@@ -33,7 +33,7 @@ describe('Users Middleware', () => {
         middleware(request, response, next);
         
         // Then
-        expect(next.called).to.be.tue;
+        expect(next.called).to.be.true;
     });
     
     it('if the user is not already signed in, ' +
