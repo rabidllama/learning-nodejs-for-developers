@@ -1,10 +1,10 @@
 'use strict';
 
-const middleware = require('../../src/middleware/users');
+const middleware = require('../../src/middleware/users.js');
 const expect = require('chai').expect;
 const sinon = require('sinon');
 
-describe('Users Middleware', () => {
+describe('Users middleware', () => {
     const defaultUserId = 'user-id-1';
     let request, response;
     
@@ -13,7 +13,7 @@ describe('Users Middleware', () => {
         response = { cookie: () => {} };
     });
     
-    it('if the user is already signed in, reads their ID from a cookie and exposes the user on the request', () => {
+    it('if the user already signed in, reads their ID from a cookie and exposes the user on the request', () => {
         // Given
         request.cookies.userId = defaultUserId;
         
@@ -27,7 +27,7 @@ describe('Users Middleware', () => {
     
     it('calls the next middleware in the chain', () => {
         // Given
-       const next = sinon.spy();
+        const next = sinon.spy();
         
         // When
         middleware(request, response, next);
@@ -37,7 +37,7 @@ describe('Users Middleware', () => {
     });
     
     it('if the user is not already signed in, ' +
-      'creates a new user id and stores it in the cookie', () => {
+        'creates a new user id and stores it in a cookie', () => {
         // Given
         request.cookies.userId = undefined;
         response = { cookie: sinon.spy() };
@@ -49,6 +49,7 @@ describe('Users Middleware', () => {
         expect(request.user).to.exist;
         const newUserId = request.user.id;
         expect(newUserId).to.exist;
-        expect(response.cookie.calledWith('userId', newUserId)).to.be.true;
+        expect(response.cookie.calledWith(
+            'userId', newUserId)).to.be.true;
     });
 });

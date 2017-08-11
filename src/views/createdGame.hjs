@@ -1,4 +1,4 @@
 <li class="game">
-    {{word}} 
-    <a class="delete" href="/games/{{id}}">(delete)</a>
+  {{word}}
+  <a class="delete" href="/games/{{id}}">(delete)</a>
 </li>

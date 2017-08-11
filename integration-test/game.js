@@ -1,5 +1,3 @@
-/* eslint-env phantomjs */
-/* eslint-disable no-console */
 (function() {
     'use strict';
 
