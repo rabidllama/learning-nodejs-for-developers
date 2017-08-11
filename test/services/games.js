@@ -1,5 +1,5 @@
 'use strict';
-const assert = require('assert');
+//const assert = require('assert');
 const expect = require('chai').expect;
 const service = require('../../src/services/games');
 
@@ -38,6 +38,6 @@ describe('Game service', () => {
             expect(games.length).to.equal(1);
             let game = games[0];
             expect(game.setBy).not.to.equal(secondUserId);
-        })
+        });
     });
 });

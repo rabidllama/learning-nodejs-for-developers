@@ -17,7 +17,6 @@ class Game {
                 positions.push(i);
             }
         }
-        console.log(positions);
         return positions;
     }
     
@@ -30,7 +29,7 @@ module.exports.create = (userId, word) => {
     const newGame = new Game(nextId++, userId, word);
     games.push(newGame);
     return newGame;
-}
+};
 
 module.exports.get = 
     (id) => games.find(game => game.id === parseInt(id, 10));

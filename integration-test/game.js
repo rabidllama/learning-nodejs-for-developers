@@ -1,13 +1,15 @@
+/* eslint-env phantomjs */
+/* eslint-disable no-console */
 (function() {
     'use strict';
-    
+
     var expect = require('chai').expect;
     var page = require('webpage').create();
-    var rootUrl = 'http://localhost:3000';
+    var rootUrl = 'http://localhost:' + require('system').env.TEST_PORT || 3000;
     
     withGame('Example', function() {
         expect(getText('#word')).to.equal('_______');
-        
+         
         page.evaluate(function() {
             $(document).ajaxComplete(window.callPhantom);
         });
@@ -30,7 +32,6 @@
     
     function withGame(word, callback) {
         page.open(rootUrl + '/', function() {
-            'use strict';
             page.evaluateAsync(function(w) {
                 $('input[name=word]').val(w);
                 $('form#createGame').submit();
@@ -52,28 +53,28 @@
             };
         });
     }
-        
+    
     function getText(selector) {
         return page.evaluate(function(s) {
             return $(s).text();
         }, selector);
     }
-        
+    
     function verify(expectations) {
-        return function() {
+        return function() { 
             try {
                 expectations();
-            } catch (e) {
+            } catch(e) {
                 console.log('Test failed!');
                 handleError(e.message);
             }
-        }
+        };
     }
-        
+    
     function handleError(message) {
-        consloe.log(message);
+        console.log(message);
         phantom.exit(1);
     }
-        
+    
     phantom.onError = page.onError = handleError;
 }());

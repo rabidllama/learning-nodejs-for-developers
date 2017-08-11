@@ -11,7 +11,7 @@ const checkGameExists = function(id, res, callback) {
     } else {
         res.status(404).send('Non-existent game ID');
     }
-}
+};
 
 router.post('/', function(req, res, next) {
     const word = req.body.word;
@@ -39,7 +39,7 @@ router.get('/:id/created', function(req, res, next) {
         res,
         game => res.render('createdGame', game)
     );
-})
+});
 
 router.post('/:id/guesses', function(req, res, next) {
     checkGameExists(

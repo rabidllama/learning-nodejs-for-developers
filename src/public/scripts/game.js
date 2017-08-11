@@ -22,7 +22,7 @@ $(function() {
                         .append('<span>' + letter + '</span>');
                 }
         });
-    }
+    };
     
     $(document).keydown(function(event) {
         // Letter keys have key codes in range 65-90

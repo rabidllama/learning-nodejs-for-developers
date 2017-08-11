@@ -1,6 +1,6 @@
 'use strict';
 
-const http = require('http');
+//const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('supertest');
@@ -25,7 +25,7 @@ describe('/games', () => {
     
     beforeEach(() => {
         agent = request.agent(app);
-    })
+    });
     
     afterEach( () => {
         const gamesCreated = gameService.availableTo('non-user');
